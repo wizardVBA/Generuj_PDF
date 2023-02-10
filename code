@@ -1,0 +1,35 @@
+Sub zapis_wybranych_zakladek_do_PDF()
+
+    Application.ScreenUpdating = False
+    
+    Dim Arkusz As Worksheet
+    
+    Set wb = ThisWorkbook.Worksheets("INPUT")
+    sciezka = wb.Cells(2, 2)
+    sufix_nazwy_pliku = "_SPECYFIKACJA_FV_" & Right(wb.Cells(1, 2), 4) & "_" & Left(wb.Cells(1, 2), 2)
+    
+    ChDir sciezka
+
+    For Each Arkusz In Worksheets
+    
+        nazwa_pliku = Arkusz.Name & sufix_nazwy_pliku
+           
+        If Left(nazwa_pliku, 1) = "B" Then
+        
+            If Arkusz.Visible = -1 Then
+            
+                Arkusz.PageSetup.Orientation = xlLandscape
+                Arkusz.ExportAsFixedFormat Type:=xlTypePDF, Filename:= _
+                sciezka & nazwa_pliku & ".pdf", Quality:=xlQualityStandard, _
+                IncludeDocProperties:=True, IgnorePrintAreas:=False, OpenAfterPublish:= _
+                False
+            
+            End If
+        
+    End If
+    
+    Next Arkusz
+    
+    MsgBox "Gotowe"
+
+End Sub
