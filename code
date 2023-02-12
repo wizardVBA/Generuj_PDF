@@ -1,3 +1,6 @@
+'Założenie - w setupowym arkuszu "INPUT" należy określić ścieżkę zapisu generowanych plików oraz rozszeżenie nazwy np: SPECYFIKACJA_FV _
+           'Zapisywane są tylko dane z arkuszy, których nazwy zaczynają się od "B".
+
 Sub zapis_wybranych_zakladek_do_PDF()
 
     Application.ScreenUpdating = False
